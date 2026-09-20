@@ -11,7 +11,6 @@ export class MovieSearch {
             url.searchParams.set("page", page);
 
             let response = await fetch(url);
-            console.log(url);
             if (!response.ok) {
                 throw new Error(`HTTP Error: ${response.status} ${response.statusText}`);
             }
@@ -38,4 +37,3 @@ export class MovieSearch {
         }
     }
 }
-
