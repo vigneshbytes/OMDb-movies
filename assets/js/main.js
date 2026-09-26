@@ -2,10 +2,14 @@ import { MovieSearch } from "./searchAPI.js";
 
 const movieCardTemplate = document.querySelector('#movie-card-template');
 
-let result = await MovieSearch.apiCall("transformer");
-console.log(result.movies);
+// Parse query parameters
+const params = new URLSearchParams(window.location.search);
+const searchParam = params.get("searchInput");
 
-let results = Document.querySelector
+let result = await MovieSearch.apiCall(searchParam);
+
+
+// console.log(result.movies);
 
 result.movies.forEach(displayMovies);
 
