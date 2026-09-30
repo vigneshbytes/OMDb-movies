@@ -1,6 +1,6 @@
 import { searchHandlerFunc } from "./searchHandler.js";
 
 const { pathname, search } = window.location;
-if (pathname == "/pages/search.html") {
+if (pathname.endsWith("/pages/search.html")) {
     searchHandlerFunc();
 }
