@@ -1,0 +1,92 @@
+/* -------------------------------------------------------------
+ * 1. Layout Container (Grid)
+ * ----------------------------------------------------------- */
+.searchResults {
+    --grid-cols: 2;
+    display: grid;
+    grid-template-columns: repeat(var(--grid-cols), minmax(0, 1fr));
+    gap: clamp(1rem, 2vw, 1.75rem);
+    padding: 1.5rem;
+    align-items: stretch;
+    /* Cards in each row expand to the tallest sibling */
+}
+
+@media (min-width: 580px) {
+    .searchResults {
+        --grid-cols: 3;
+    }
+}
+
+@media (min-width: 900px) {
+    .searchResults {
+        --grid-cols: 4;
+    }
+}
+
+@media (min-width: 1280px) {
+    .searchResults {
+        --grid-cols: 5;
+    }
+}
+
+/* -------------------------------------------------------------
+ * 2. Movie Card Component
+ * ----------------------------------------------------------- */
+.movie-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* Fill the entire track height provided by the grid */
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* -------------------------------------------------------------
+ * 3. Poster Sizing (Zero distortion + Responsive stretch)
+ * ----------------------------------------------------------- */
+.movie-card__poster-wrapper {
+    position: relative;
+    width: 100%;
+    /* Standard movie one-sheet aspect ratio (2:3) */
+    aspect-ratio: 2 / 3;
+    background-color: #2a2a2a;
+    overflow: hidden;
+}
+
+.movie-card__poster {
+    width: 100%;
+    height: 100%;
+    display: block;
+    /* Scales image to fill dimensions while preserving aspect ratio */
+    object-fit: cover;
+    object-position: center;
+}
+
+/* -------------------------------------------------------------
+ * 4. Content Area (Expands to absorb uneven title lengths)
+ * ----------------------------------------------------------- */
+.movie-card__content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    /* Expands to fill empty card space */
+    padding: 1rem;
+    color: #f3f3f3;
+}
+
+.movie-card__title {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+    line-height: 1.35;
+    word-break: break-word;
+}
+
+.movie-card__meta {
+    /* Pushes release info to the very bottom regardless of title line count */
+    margin-top: auto;
+    margin-bottom: 0;
+    font-size: 0.875rem;
+    color: #a0a0a0;
+}
